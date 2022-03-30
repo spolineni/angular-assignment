@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserRegistrationComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
   registerForm = this.fb.group({
     name: ['', Validators.required],
@@ -22,7 +23,10 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   regiterUser() {
-    this.userService.registerUser().subscribe(data => console.log(data));
+    this.userService.registerUser().subscribe((data) => {
+      sessionStorage.setItem('loginStatus', JSON.stringify(data));
+      this.router.navigate(['profile']);
+    });
   }
 
 }

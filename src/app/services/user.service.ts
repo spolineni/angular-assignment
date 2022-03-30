@@ -15,4 +15,9 @@ export class UserService {
   getUserProfile() {
     return this.http.get('https://mocki.io/v1/611a3036-4420-48a5-b8da-9b461853cdd2');
   }  
+
+  checkUserStatus() {
+    const loggedIn = JSON.parse(sessionStorage.getItem('loginStatus') || '{}');
+    return loggedIn.success;
+  }
 }
