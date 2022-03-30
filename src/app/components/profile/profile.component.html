@@ -1,1 +1,18 @@
-<p>profile works!</p>
+<div class="nav-container">
+    <nav>
+        <button mat-button color="primary" type="submit" (click)="logout()">Logout</button>
+    </nav>    
+</div>
+
+<div class="profile-container">
+    <div>
+        <!-- I have manually downloaded the image from the link in the API response 
+            as using the link here is cauing a CORS error -->
+        <img src="assets/king-julian.webp" alt="profile picture">
+    </div>
+    <div>
+        <h2>{{userData?.name}}</h2>
+        <p>{{userData?.email}}</p>
+        <p>{{userData?.bio}}</p>
+    </div>
+</div>

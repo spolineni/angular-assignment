@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor() { }
+  userData: any;
+  constructor(private userService: UserService, private router: Router) { 
+    this.userService.getUserProfile().subscribe(data => this.userData = data);
+  }
 
   ngOnInit(): void {
+  }
+
+  /* clearing out the session storage variable when logout is clicked */
+
+  logout() {
+    sessionStorage.removeItem('loginStatus');
+    this.router.navigate(['user-registration']);
   }
 
 }

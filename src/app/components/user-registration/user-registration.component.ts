@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-registration.component.scss']
 })
 export class UserRegistrationComponent implements OnInit {
-
+  showLoader: boolean = false;
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
   registerForm = this.fb.group({
@@ -20,9 +20,15 @@ export class UserRegistrationComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('loginStatus')) {
+      sessionStorage.removeItem('loginStatus')
+    }
   }
 
+  /* adding a delay to show the progress bar loading */
+
   regiterUser() {
+    this.showLoader = true;
     this.userService.registerUser().subscribe((data) => {
       sessionStorage.setItem('loginStatus', JSON.stringify(data));
       this.router.navigate(['profile']);

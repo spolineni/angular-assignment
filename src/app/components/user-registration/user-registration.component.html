@@ -34,7 +34,7 @@
                         <mat-label>Bio</mat-label>
                         <textarea matInput placeholder="Few words about you..." formControlName="bio"></textarea>
                         <mat-error *ngIf="registerForm.controls['bio'].hasError('required')">
-                            Say something about how cool you are...
+                            Say something about you and what you like...
                         </mat-error>
                     </mat-form-field>
                     <mat-card-actions class="actions">
@@ -44,7 +44,7 @@
             </mat-card-content>
 
             <mat-card-footer>
-                <mat-progress-bar value="0" *ngIf=""></mat-progress-bar>
+                <mat-progress-bar mode="indeterminate" *ngIf="showLoader"></mat-progress-bar>
             </mat-card-footer>
         </mat-card>
     </mat-grid-tile>
