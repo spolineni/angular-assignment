@@ -1,0 +1,51 @@
+<mat-grid-list cols="1" rowHeight="800px" class="register-container">
+    <mat-grid-tile>
+        <mat-card class="card">
+            <mat-card-title class="title">Register</mat-card-title>
+            <mat-card-subtitle class="subtitle">Fill this form to sign up</mat-card-subtitle>
+
+            <mat-card-content>
+                <form class="form" [formGroup]="registerForm" (ngSubmit)="regiterUser()">
+                    <mat-form-field class="input-field" appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input type="text" matInput formControlName="name" placeholder="King Julian">
+                        <mat-error *ngIf="registerForm.controls['name'].hasError('required')">
+                            Name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-field" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" placeholder="example@domain.com">
+                        <mat-error *ngIf="registerForm.controls['email'].hasError('email') && !registerForm.controls['email'].hasError('required')">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-field" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input type="password" matInput formControlName="password" placeholder="*********">
+                        <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
+                            Password is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="text-area-field" appearance="outline">
+                        <mat-label>Bio</mat-label>
+                        <textarea matInput placeholder="Few words about you..." formControlName="bio"></textarea>
+                        <mat-error *ngIf="registerForm.controls['bio'].hasError('required')">
+                            Say something about how cool you are...
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-card-actions class="actions">
+                        <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Sign Up</button>
+                    </mat-card-actions>
+                </form>
+            </mat-card-content>
+
+            <mat-card-footer>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
