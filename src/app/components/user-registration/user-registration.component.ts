@@ -28,6 +28,7 @@ export class UserRegistrationComponent implements OnInit {
   /* adding a delay to show the progress bar loading */
 
   regiterUser() {
+    //Not passing any form data as its a mock GET API.
     this.showLoader = true;
     this.userService.registerUser().subscribe((data) => {
       sessionStorage.setItem('loginStatus', JSON.stringify(data));

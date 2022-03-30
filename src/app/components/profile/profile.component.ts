@@ -10,10 +10,10 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
   userData: any;
   constructor(private userService: UserService, private router: Router) { 
-    this.userService.getUserProfile().subscribe(data => this.userData = data);
   }
 
   ngOnInit(): void {
+    this.userService.getUserProfile().subscribe(data => this.userData = data);
   }
 
   /* clearing out the session storage variable when logout is clicked */

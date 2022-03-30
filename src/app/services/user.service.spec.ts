@@ -16,4 +16,24 @@ describe('UserService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should return profile details', (done: DoneFn) => {
+    service.getUserProfile().subscribe(
+      customers => {
+        expect(customers).not.toBeNull();
+        done();
+      },
+      done.fail
+    );
+  });
+
+  it('should return registration status', (done: DoneFn) => {
+    service.registerUser().subscribe(
+      status => {
+        expect(status).not.toBeNull();
+        done();
+      },
+      done.fail
+    );
+  });
 });
